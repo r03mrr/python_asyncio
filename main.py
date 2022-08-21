@@ -24,8 +24,8 @@ def json_normal(poller):
 
 if __name__ == '__main__':
     api_poller = ApiPoller()
-    #json_normal(api_poller)
-    #json_loop(api_poller)
+    json_normal(api_poller)
+    json_loop(api_poller)
     json_async(api_poller)
 
 
