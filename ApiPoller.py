@@ -49,9 +49,9 @@ class ApiPoller:
             
             responses = await asyncio.gather(*tasks)
 
-        for response in responses:
-            data = await response.json()
-            print(data)
+        #for response in responses:
+        #    data = await response.json()
+        #    print(data)
 
         print('Exiting async')
 
