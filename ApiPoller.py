@@ -48,8 +48,10 @@ class ApiPoller:
                 tasks.append(session.get(url, headers=self.headers))
             
             responses = await asyncio.gather(*tasks)
-            for response in responses:
-                print(response)
+
+        for response in responses:
+            data = await response.json()
+            print(data)
 
         print('Exiting async')
 
