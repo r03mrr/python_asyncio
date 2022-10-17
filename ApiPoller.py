@@ -1,6 +1,7 @@
 import requests
 import asyncio
-import aiohttp
+from aiohttp import ClientSession
+
 
 class ApiPoller:
     def __init__(self):
@@ -15,7 +16,6 @@ class ApiPoller:
     def get_json(self):
         endpoint = 'json'
         self.call_api(self.url + endpoint)
-        pass
 
     def get_json_loop(self):
         endpoint = 'json'
@@ -24,7 +24,7 @@ class ApiPoller:
     def get_json_async(self):
         endpoint = 'json'
         loop = asyncio.get_event_loop()
-        result = loop.run_until_complete(self.call_api_async(self.url + endpoint))
+        loop.run_until_complete(self.call_api_async(self.url + endpoint))
 
     def run_delay(self, delay):
         endpoint = f'delay/{delay}'
@@ -43,16 +43,14 @@ class ApiPoller:
         print('Entering async')
 
         tasks = []
-        async with aiohttp.ClientSession() as session:
+        async with ClientSession() as session:
             for _ in range(1, 101):
                 tasks.append(session.get(url, headers=self.headers))
-            
+
             responses = await asyncio.gather(*tasks)
 
-        #for response in responses:
-        #    data = await response.json()
-        #    print(data)
-
+        for response in responses:
+            data = await response.json()
+            for json in data:
+                pass
         print('Exiting async')
-
-

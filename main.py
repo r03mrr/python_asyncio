@@ -27,6 +27,3 @@ if __name__ == '__main__':
     json_normal(api_poller)
     json_loop(api_poller)
     json_async(api_poller)
-
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
