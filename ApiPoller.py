@@ -1,5 +1,6 @@
 import requests
 import asyncio
+import json
 from aiohttp import ClientSession
 
 
@@ -51,6 +52,4 @@ class ApiPoller:
 
         for response in responses:
             data = await response.json()
-            for json in data:
-                pass
         print('Exiting async')
