@@ -10,6 +10,7 @@ class ApiPoller:
         self.headers = {
             'Content-Type': 'application/json'
         }
+        self.calls = 100
 
     def process(self):
         pass
@@ -35,17 +36,17 @@ class ApiPoller:
         requests.request('GET', url, params=None, headers=self.headers)
         
     def call_api_with_loop(self, url):
-        print('Starting Loop')
-        for _ in range(1, 101):
+        print(f'Making {self.calls} requests in a loop')
+        for _ in range(1, self.calls+1):
             requests.request('GET', url, params=None, headers=self.headers)
         print('Exit loop')
     
     async def call_api_async(self, url):
-        print('Entering async')
+        print (f'Making {self.calls} request async')
 
         tasks = []
         async with ClientSession() as session:
-            for _ in range(1, 101):
+            for _ in range(1, self.calls + 1):
                 tasks.append(session.get(url, headers=self.headers))
 
             responses = await asyncio.gather(*tasks)

@@ -20,7 +20,7 @@ def json_normal(poller):
     start_time = perf_counter()
     poller.get_json()
     end_time = perf_counter()
-    print(f'JSON NORMAL - Run time {end_time - start_time}')
+    print(f'JSON  - Run time {end_time - start_time}')
 
 if __name__ == '__main__':
     api_poller = ApiPoller()
